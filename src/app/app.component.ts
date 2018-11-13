@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Recipe-Book';
+
+  displayOption = "recipe";
+  
+  onHeaderClicked(displayOption){
+    console.log("event triggered and display option: "+this.displayOption);
+    this.displayOption=displayOption;
+  }
+
 }
