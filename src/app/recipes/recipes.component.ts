@@ -1,25 +1,25 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Recipe } from './recipe.model';
+import { RecipeService } from './recipe.service';
 
 @Component({
   selector: 'app-recipes',
   templateUrl: './recipes.component.html',
-  styleUrls: ['./recipes.component.css']
+  styleUrls: ['./recipes.component.css'],
 })
 export class RecipesComponent implements OnInit {
 
-  @Input() clickedItem: Recipe;
+  clickedItem: Recipe;
 
-  detailsDisplayFlag= false;
-
-  constructor() { }
+  constructor(private recipeService: RecipeService) { }
 
   ngOnInit() {
+
+    this.recipeService.anItemIsClicked.subscribe((recipe:Recipe)=>{
+      this.clickedItem=recipe;
+    })
   }
 
-  onClickOfAnItem(clickedItem:Recipe){
-    this.clickedItem = clickedItem;
-    this.detailsDisplayFlag=true;
-  }
+
 
 }
